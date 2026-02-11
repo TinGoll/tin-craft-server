@@ -1,0 +1,26 @@
+version: '3.9'
+
+services:
+  tincraft-server:
+    build: .
+    container_name: tincraft-updates
+    ports:
+      - "${SERVER_PORT}:${SERVER_PORT}"
+    env_file:
+      - .env
+    volumes:
+      - ./updates:/app/updates
+    restart: unless-stopped
+
+  tincraft-postgres:
+    image: postgres:15-alpine
+    container_name: tincraft-db
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    env_file:
+      - .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
