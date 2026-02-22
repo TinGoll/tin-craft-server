@@ -6,6 +6,7 @@ import { UserModule } from './modules/user/user.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './modules/user/user.entity';
+import { LauncherModule } from './modules/launcher/launcher.module';
 
 @Module({
   imports: [
@@ -42,6 +43,7 @@ import { User } from './modules/user/user.entity';
     }),
     UserModule,
     AuthModule,
+    LauncherModule,
   ],
 })
 export class AppModule {}
