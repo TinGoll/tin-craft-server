@@ -1,14 +1,13 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Header } from '@nestjs/common';
+import { LauncherService } from './launcher.service';
 
 @Controller('launcher')
 export class LauncherController {
+  constructor(private readonly launcherService: LauncherService) {}
+
   @Get('version')
+  @Header('Cache-Control', 'no-store')
   getVersion() {
-    return {
-      version: '1.0.0',
-      platform: 'win-x64',
-      url: 'https://tincraft.ru/updates/TinCraft-Launcher-1.0.0.exe',
-      sha256: 'b1946ac92492d2347c6235b4d2611184',
-    };
+    return this.launcherService.getVersion();
   }
 }
